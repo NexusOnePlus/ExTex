@@ -1,4 +1,4 @@
-# KATEX for Whatsapp Web
+# KATEX for Whatsapp Web 👾
 
 ![image](https://github.com/user-attachments/assets/8e7db518-ae47-4e0f-b214-88e69e92816a)
 
@@ -6,7 +6,7 @@
 Include TeX functions supported by KateX inside \[ ... ]\ for display mode or \( ... \) for inline mode. 
 
 ## How to install
-Unzip this repository, go to extensions manager, turn on developer mode, load unpacked extension and select the repository's folder. 
+Download and unzip this repository, go to extensions manager, turn on developer mode, load unpacked extension and select the repository's folder. 
 > [!NOTE]
 > Made by Claude AI mostly. 
 > Only tested on Arc Browser for Windows 11.
