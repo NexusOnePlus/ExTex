@@ -1,6 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "LaTeX Renderer for WhatsAapp",
+  "name": "ExTex",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "version": "1.0",
   "description": "Renderiza LaTeX en los mensajes de WhatsApp Web.",
   "permissions": [
@@ -17,23 +23,37 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://web.whatsapp.com/*"],
-      "css": ["katex/katex.min.css"],
-      "js": ["katex/katex.min.js"],
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "css": [
+        "katex/katex.min.css"
+      ],
+      "js": [
+        "katex/katex.min.js"
+      ],
       "run_at": "document_start"
     },
     {
-      "matches": ["https://web.whatsapp.com/*"],
-      "js": ["content.js"],
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_end"
     }
   ],
-  "web_accessible_resources": [{
-    "resources": [
-      "katex/fonts/*",
-      "katex/katex.min.js",
-      "katex/katex.min.css"
-    ],
-    "matches": ["https://web.whatsapp.com/*"]
-  }]
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "katex/fonts/*",
+        "katex/katex.min.js",
+        "katex/katex.min.css"
+      ],
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ]
+    }
+  ]
 }

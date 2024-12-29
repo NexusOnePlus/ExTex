@@ -80,19 +80,6 @@ function addCustomStyles() {
     document.head.appendChild(style);
 }
 
-// Función para renderizar LaTeX localmente
-function renderLatex(text) {
-    try {
-        return katex.renderToString(text, {
-            throwOnError: false,
-            displayMode: text.includes("\\["),
-            output: 'html'
-        });
-    } catch (error) {
-        console.error('[Content] Local render error:', error);
-        return null;
-    }
-}
 
 // Función para extraer y procesar fórmulas LaTeX del texto
 function extractLatexFormulas(text) {
@@ -228,25 +215,7 @@ async function processLatexElements() {
         isProcessing = false;
     }
 }
-// Agregar observer para edición de mensajes
-function setupEditObserver() {
-    const editObserver = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-            if (mutation.target.querySelector('[data-icon="checkmark-medium"]')) {
-                setTimeout(() => {
-                    console.log('[Content] Message edit detected, reprocessing...');
-                    processLatexElements();
-                }, 100);
-            }
-        }
-    });
 
-    editObserver.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true
-    });
-}
 
 // Configurar el observer 
 function setupObserver() {
@@ -272,7 +241,6 @@ function setupObserver() {
         subtree: true
     });
     
-    setupEditObserver();
     console.log('[Content] All observers setup complete');
 }
 
@@ -297,31 +265,3 @@ async function initialize() {
 
 // Iniciar
 initialize();
-
-// Función de prueba
-window.testLaTeX = async (text = "\\[x^2\\]") => {
-    console.log('[Content] Testing LaTeX:', text);
-    
-    if (!await checkKaTeX()) {
-        console.error('[Content] KaTeX not available for testing');
-        return null;
-    }
-    
-    try {
-        const rendered = renderLatex(text);
-        if (rendered) {
-            const testDiv = document.createElement('div');
-            testDiv.innerHTML = rendered;
-            testDiv.style.cssText = 'padding: 10px; background-color: #f0f0f0; position: fixed; top: 10px; right: 10px; z-index: 9999;';
-            document.body.appendChild(testDiv);
-            setTimeout(() => testDiv.remove(), 5000);
-            return rendered;
-        }
-        return null;
-    } catch (error) {
-        console.error('[Content] Test error:', error);
-        return null;
-    }
-};
-
-console.log('[Content] Script loaded');
